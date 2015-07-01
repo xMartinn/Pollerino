@@ -12,19 +12,19 @@ namespace Pollerino.Models
 
         protected override void Seed(ModelContext context)
         {
-/*
+            /*
             var polls = new List<Poll>
              {
-                 new Poll {Question = "Whats your favorite color?", MultipleChoices = false},
+                 new Poll {QuestionText = "Whats your favorite color?", MultipleChoices = false, PollId=0},
              };
 
             foreach (var item in polls)
             {
                 context.Polls.Add(item);
             }
-
+            
             context.SaveChanges();
- */
+            */
         }
     }
 }
