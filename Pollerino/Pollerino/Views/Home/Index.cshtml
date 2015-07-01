@@ -23,16 +23,17 @@
                     }
                 *@
 
-                @{int numOptions = 3;}
+                @*
+                    @{int numOptions = 3;}
 
-                @for (int i = 0; i < numOptions; i++)
-                {
-                    //  @Html.TextBoxFor( model=>model.Options[i].OptionText)
-                    //   @Html.EditorFor(m => m.Options[i].OptionText);
-                    <span>@(i + 1)</span> <input name="Options[@i].OptionText" type="text" />
-                    <br />
-                }
-
+                    @for (int i = 0; i < numOptions; i++)
+                    {
+                        //  @Html.TextBoxFor( model=>model.Options[i].OptionText)
+                        //   @Html.EditorFor(m => m.Options[i].OptionText);
+                        <span>@(i + 1)</span> <input name="Options[@i].OptionText" type="text" />
+                        <br />
+                    }
+                *@
 
                 @*
                     <span id="option"></span>
@@ -50,7 +51,7 @@
                     <span class="add">add</span>
                 *@
 
-               @*credits http://www.sanwebe.com/2013/03/addremove-input-fields-dynamically-with-jquery*@
+                @*credits http://www.sanwebe.com/2013/03/addremove-input-fields-dynamically-with-jquery*@
 
                 <script type="text/javascript">
                     $(document).ready(function () {
@@ -65,7 +66,7 @@
                             numOptions = +1;
                             if (x < max_fields) { //max input box allowed
                                 x++; //text box increment
-                                $(wrapper).append('<div> <span>' + x + '. </span><input name="Options[' + 3 + '].OptionText" type="text" name="mytext[]"/><a href="#" class="remove_field">Remove</a></div>'); //add input box
+                                $(wrapper).append('<div> <span>' + x + '. </span><input name="Options[' + (x-1) + '].OptionText" type="text" name="mytext[]"/><a href="#" class="remove_field">Remove</a></div>'); //add input box
                             }
                         });
 
@@ -77,10 +78,9 @@
 
 
                 <div class="input_fields_wrap">
-                    <div><span>1.</span><input type="text" name="mytext[]"></div>
-                    <div><span>2.</span><input type="text" name="mytext[]"></div>
-                    <div><span>3.</span><input type="text" name="mytext[]"></div>
-
+                    <div><span>1. </span><input name="Options[0].OptionText" type="text" /></div>
+                    <div><span>2. </span><input name="Options[1].OptionText" type="text" /></div>
+                    <div><span>3. </span><input name="Options[2].OptionText" type="text" /></div>
                 </div>
                 <button class="add_field_button">Add More Fields</button>
 
