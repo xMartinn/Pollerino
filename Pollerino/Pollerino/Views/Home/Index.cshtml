@@ -1,36 +1,94 @@
-﻿@{
+﻿@model Pollerino.Models.Poll
+
+@{
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="http://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
 
-    @HttpContext.Current.Request.UserHostAddress
-    <br/>
+<div class="">
+    <div>
 
-    @HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"]
-</div>
+        @using (Html.BeginForm())
+        {
+            <div>
+                @Html.AntiForgeryToken()
+                <br />
+                @Html.TextBoxFor(m => m.QuestionText, new { Value = "Enter your poll question here..." })
+                <br />
+                @Html.CheckBoxFor(m => m.MultipleChoices)
+                <br />
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
-        </p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+                @*    @{
+                    var options = new List<Pollerino.Models.Option>();
+                    }
+                *@
+
+                @{int numOptions = 3;}
+
+                @for (int i = 0; i < numOptions; i++)
+                {
+                    //  @Html.TextBoxFor( model=>model.Options[i].OptionText)
+                    //   @Html.EditorFor(m => m.Options[i].OptionText);
+                    <span>@(i + 1)</span> <input name="Options[@i].OptionText" type="text" />
+                    <br />
+                }
+
+
+                @*
+                    <span id="option"></span>
+                    <script type="text/javascript">
+                        var numOptions = parseInt(@numOptions.ToString());
+
+                        $(function () {
+                            var NewOption = '<span>' + numOptions + ' </span><input name="Options[' + numOptions + '].OptionText" type="text"/><br/>'
+                            $(".add").click(function () {
+                                numOptions = +1;
+                                $("#option").after(NewOption);
+                            });
+                        });
+                    </script>
+                    <span class="add">add</span>
+                *@
+
+               @*credits http://www.sanwebe.com/2013/03/addremove-input-fields-dynamically-with-jquery*@
+
+                <script type="text/javascript">
+                    $(document).ready(function () {
+
+                        var max_fields = 17; //maximum input boxes allowed
+                        var wrapper = $(".input_fields_wrap"); //Fields wrapper
+                        var add_button = $(".add_field_button"); //Add button ID
+
+                        var x = 3; //initlal text box count
+                        $(add_button).click(function (e) { //on add input button click
+                            e.preventDefault();
+                            numOptions = +1;
+                            if (x < max_fields) { //max input box allowed
+                                x++; //text box increment
+                                $(wrapper).append('<div> <span>' + x + '. </span><input name="Options[' + 3 + '].OptionText" type="text" name="mytext[]"/><a href="#" class="remove_field">Remove</a></div>'); //add input box
+                            }
+                        });
+
+                        $(wrapper).on("click", ".remove_field", function (e) { //user click on remove text
+                            e.preventDefault(); $(this).parent('div').remove(); x--;
+                        })
+                    });
+                </script>
+
+
+                <div class="input_fields_wrap">
+                    <div><span>1.</span><input type="text" name="mytext[]"></div>
+                    <div><span>2.</span><input type="text" name="mytext[]"></div>
+                    <div><span>3.</span><input type="text" name="mytext[]"></div>
+
+                </div>
+                <button class="add_field_button">Add More Fields</button>
+
+
+                <br />
+                <input type="submit" value="Create" />
+            </div>
+        }
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="http://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
-    </div>
+
 </div>
