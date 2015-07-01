@@ -9,6 +9,8 @@ namespace Pollerino.Models
     {
         public int OptionId { get; set; }
         public string OptionText { get; set; }
+        public bool WasChecked { get; set; }
+
         public virtual IEnumerable<Vote> Votes{get; set;}
 
         public int PollId { get; set; }
