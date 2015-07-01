@@ -1,7 +1,35 @@
-﻿@{
-    ViewBag.Title = "About";
-}
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+﻿@model Pollerino.Models.Poll
 
-<p>Use this area to provide additional information.</p>
+@{
+    ViewBag.Title = "Poll";
+}
+
+
+@using (Html.BeginForm())
+{
+    @Html.DisplayFor(m => m.QuestionText)
+    <br/>
+    if (Model.MultipleChoices)
+    {
+
+        foreach (var option in Model.Options)
+        {
+            @Html.HiddenFor(x => option.PollId)
+            @Html.CheckBoxFor(x => option.WasChecked)
+            @Html.DisplayFor(x => option.OptionText)
+            <br />
+        }
+    }
+    else
+    {
+        foreach (var option in Model.Options)
+        {
+            @Html.HiddenFor(x => option.PollId)
+            @Html.RadioButtonFor(x => option, option.OptionText)
+            @Html.DisplayFor(x => option.OptionText)
+            <br />
+        }
+    }
+    <input type="submit" value="Submit" />
+}
+
