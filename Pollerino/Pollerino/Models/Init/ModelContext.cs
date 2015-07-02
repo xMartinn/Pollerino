@@ -14,11 +14,20 @@ namespace Pollerino.Models
         public DbSet<Poll> Polls { get; set; }
         public DbSet<Option> Options { get; set; }
         public DbSet<Vote> Votes { get; set; }
-      
+
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
+
+            modelBuilder.Entity<Vote>()
+             .HasRequired(c => c.Poll)
+             .WithMany()
+             .WillCascadeOnDelete(false);
+
+
             modelBuilder.Conventions.Remove<PluralizingEntitySetNameConvention>();
         }
+
+
 
     }
 }

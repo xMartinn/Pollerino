@@ -12,5 +12,9 @@ namespace Pollerino.Models
 
         public int OptionId { get; set; }
         public virtual Option Option { get; set; }
+
+        public int PollId { get; set; }
+        public virtual Poll Poll { get; set; }
+
     }
 }
