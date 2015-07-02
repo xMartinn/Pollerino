@@ -1,17 +1,18 @@
-﻿@{
-    ViewBag.Title = "Contact";
+﻿@model Pollerino.Models.Poll
+
+@{
+    ViewBag.Title = "Poll";
 }
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
 
-<address>
-    One Microsoft Way<br />
-    Redmond, WA 98052-6399<br />
-    <abbr title="Phone">P:</abbr>
-    425.555.0100
-</address>
+@Html.DisplayFor(m => m.QuestionText)
+<br />
+<br />
 
-<address>
-    <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-    <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-</address>
+@for (int i = 0; i < Model.Options.Count(); i++)
+{
+    <span>@(i+1) </span>
+    @Html.DisplayFor(x => Model.Options[i].OptionText)
+    @Html.DisplayFor(x => Model.Options[i].NumVotes)
+    <br />
+}
+
