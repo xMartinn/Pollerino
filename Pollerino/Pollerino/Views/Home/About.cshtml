@@ -7,16 +7,19 @@
 
 @using (Html.BeginForm())
 {
+    @Html.AntiForgeryToken()
+
+    @Html.HiddenFor(m => m.PollId)
     @Html.DisplayFor(m => m.QuestionText)
     <br/>
+    
     if (Model.MultipleChoices)
     {
-
-        foreach (var option in Model.Options)
+        for (int i = 0; i < Model.Options.Count(); i++)
         {
-            @Html.HiddenFor(x => option.PollId)
-            @Html.CheckBoxFor(x => option.WasChecked)
-            @Html.DisplayFor(x => option.OptionText)
+            @Html.HiddenFor(x => Model.Options[i].PollId)
+            @Html.CheckBoxFor(x => Model.Options[i].WasChecked)
+            @Html.DisplayFor(x => Model.Options[i].OptionText)
             <br />
         }
     }
@@ -25,7 +28,7 @@
         foreach (var option in Model.Options)
         {
             @Html.HiddenFor(x => option.PollId)
-            @Html.RadioButtonFor(x => option, option.OptionText)
+            @Html.RadioButtonFor(x => Model.SelectedItem, option.OptionId)
             @Html.DisplayFor(x => option.OptionText)
             <br />
         }
