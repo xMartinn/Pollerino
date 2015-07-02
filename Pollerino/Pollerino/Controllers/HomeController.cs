@@ -28,7 +28,7 @@ namespace Pollerino.Controllers
                 db.Polls.Add(poll);
                 db.SaveChanges();
 
-                foreach (var option in poll.Options) {
+              /*  foreach (var option in poll.Options) {
                     if (!String.IsNullOrWhiteSpace(option.OptionText))
                     {
                         option.WasChecked = false;
@@ -37,7 +37,7 @@ namespace Pollerino.Controllers
                     }
                 }
                 db.SaveChanges();
- 
+ */
                 return RedirectToAction("Index");
             }
 
@@ -48,13 +48,13 @@ namespace Pollerino.Controllers
         public ActionResult About(int? id)
         {
             Poll poll= db.Polls.Find(id);
-            poll.Options = db.Options.Where(x => x.PollId == poll.PollId);  //should load auto - virtual 
+         //   poll.Options = db.Options.Where(x => x.PollId == poll.PollId).ToList();  //should load auto - virtual 
             return View(poll);
         }
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult About()
+        public ActionResult About(Poll poll)
         {
 
             return View();
