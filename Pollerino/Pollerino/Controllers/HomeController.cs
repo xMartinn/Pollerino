@@ -21,6 +21,7 @@ namespace Pollerino.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Index(Poll poll)
         {
+            //TODO check if options not empty angrytoken
 
             if (ModelState.IsValid)
             {
@@ -37,14 +38,14 @@ namespace Pollerino.Controllers
                   }
                   db.SaveChanges();
    */
-                return RedirectToAction("About", new { id = poll.PollId });
+                return RedirectToAction("Vote", new { id = poll.PollId });
 
             }
 
             return View();
         }
 
-        public ActionResult About(int? id)
+        public ActionResult Vote(int? id)
         {
 
             Poll poll = db.Polls.Find(id);
@@ -59,7 +60,7 @@ namespace Pollerino.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult About(Poll poll)
+        public ActionResult Vote(Poll poll)
         {
             /*
             if (db.Votes.Where(x => x.PollId == poll.PollId && x.VoterIp == System.Web.HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"]).Count() > 0)
@@ -106,11 +107,11 @@ namespace Pollerino.Controllers
                 db.SaveChanges();
             }
 
-            return RedirectToAction("Contact", new { id = poll.PollId });
+            return RedirectToAction("Result", new { id = poll.PollId });
         }
 
 
-        public ActionResult Contact(int? id)
+        public ActionResult Result(int? id)
         {
             Poll poll = db.Polls.Find(id);
 
