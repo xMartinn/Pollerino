@@ -21,23 +21,37 @@ namespace Pollerino.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Index(Poll poll)
         {
-            //TODO check if options not empty angrytoken
+
+            //TODO enhancement check if some options arent same 
+
+            if (String.IsNullOrWhiteSpace(poll.QuestionText) || poll.QuestionText == "enter your poll question here...")
+            {
+                ModelState.AddModelError("", "Please enter you poll question.");
+                return View(poll);
+            }
 
             if (ModelState.IsValid)
             {
+                List<Option> filtredOptions = new List<Option>();
+                foreach (var option in poll.Options)
+                {
+                    if (!String.IsNullOrWhiteSpace(option.OptionText) && option.OptionText != "enter option here...")
+                    {
+                        option.WasChecked = false;
+                        option.PollId = poll.PollId;
+                        filtredOptions.Add(option);
+                    }
+                }
+                if (filtredOptions.Count < 2)
+                {
+                    ModelState.AddModelError("", "Poll must contain atleast two options to chose.");
+                    return View(poll);
+                }
+
+                poll.Options = filtredOptions;
                 db.Polls.Add(poll);
                 db.SaveChanges();
 
-                /*  foreach (var option in poll.Options) {
-                      if (!String.IsNullOrWhiteSpace(option.OptionText))
-                      {
-                          option.WasChecked = false;
-                          option.PollId = poll.PollId;
-                          db.Options.Add(option);
-                      }
-                  }
-                  db.SaveChanges();
-   */
                 return RedirectToAction("Vote", new { id = poll.PollId });
 
             }
@@ -62,12 +76,17 @@ namespace Pollerino.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult Vote(Poll poll)
         {
+
+            //TODO
+
             /*
             if (db.Votes.Where(x => x.PollId == poll.PollId && x.VoterIp == System.Web.HttpContext.Current.Request.ServerVariables["REMOTE_ADDR"]).Count() > 0)
-            {
-                //TODO - person already voted angrytoken
+            {     
+                    ModelState.AddModelError("", "You have already voted.");
+                    return View(poll);
             }
             */
+
             if (poll.MultipleChoices)
             {
                 foreach (var option in poll.Options)
@@ -81,9 +100,8 @@ namespace Pollerino.Controllers
                         vote.OptionId = option.OptionId;
                         db.Votes.Add(vote);
 
-                        //pripocitat vote Options.numVotes
 
-
+                        //TODO lock for counting 
                         Option optionToUdt = db.Options.Find(vote.OptionId);
                         optionToUdt.NumVotes += 1;
                         db.SaveChanges();
@@ -101,7 +119,7 @@ namespace Pollerino.Controllers
                 vote.OptionId = (int)poll.SelectedItem;
                 db.Votes.Add(vote);
 
-                //pripocitat vote Options.numVotes
+                //TODO lock for counting 
                 Option optionToUdt = db.Options.Find(vote.OptionId);
                 optionToUdt.NumVotes += 1;
                 db.SaveChanges();
