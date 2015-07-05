@@ -6,8 +6,10 @@
 
 /* Set padding to keep content from hitting the edges */
 .body-content {
-    padding-left: 30px;
-    padding-right: 15px;
+    width: 1050px;
+    margin-left: auto;
+    margin-right: auto;
+    margin-top: 10px;
 }
 
 /* Set width on the form input elements since they're 100% wide by default */
@@ -34,47 +36,75 @@ textarea {
 input {
     border: none;
     background-color: #393946;
-    font-family:'Script MT Std';
- 
+    font-family: 'Script MT Std';
 }
 
-input.questionText {
-    text-align:center;
-    font-size:30pt;
-    width:100%;
-    color:#f4f4f4;
+    textarea:focus, input:focus {
+        outline: 0;
+    }
+
+.questionText {
+    font-family: 'Script MT Std';
+    text-align: center;
+    font-size: 30pt;
+    width: 100%;
+    color: #f4f4f4;
 }
 
-input.optionTextDefault {
-   text-align:left;
-   color:#25252e; 
-   font-size:25px;  
-   float:left; 
-   margin-left:30px;
+.optionTextDefault {
+    font-family: 'Script MT Std';
+    text-align: left;
+    color: #25252e;
+    font-size: 25px;
+    float: left;
+    margin-left: 20px;
 }
 
-input.optionTextEntered {
-   text-align:left;
-   color:#f4f4f4;  
-   font-size:25px;
-   float:left; 
-   margin-left:30px; 
+.optionTextEntered {
+    font-family: 'Script MT Std';
+    text-align: left;
+    color: #f4f4f4;
+    font-size: 25px;
+    float: left;
+    margin-left: 20px;
 }
 
 .numberDot {
-    width:37px;
-    height:38px;
-    background-image:url(Img/numberDot.png);
-    background-repeat:no-repeat;
-    color:#f4f4f4;
-    text-align:center;
-    font-family:'Script MT Std';
-    font-size:24px;
-    float:left;
+    width: 37px;
+    height: 38px;
+    background-image: url(Img/numberDot.png);
+    background-repeat: no-repeat;
+    color: #f4f4f4;
+    text-align: center;
+    font-family: 'Script MT Std';
+    font-size: 24px;
+    float: left;
 }
 
-.optionBlock {
-   height:38px;
-   width:100%;
+.option-block {
+    margin-top: 10px;
+    height: 38px;
+    width: 100%;
 }
 
+.dots {
+    margin-top: -23px;
+    font-family: 'Script MT Std';
+    font-size: 25px;
+    text-align: center;
+    color: #25252e;
+    letter-spacing: 5px;
+}
+
+.options-content {
+    margin-left: 360px;
+}
+
+.add-btn {
+}
+
+.create-btn {
+    font-family: 'Script MT Std';
+    font-size: 25px;
+    color: #f4f4f4;
+}
