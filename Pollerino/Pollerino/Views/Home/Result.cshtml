@@ -4,15 +4,99 @@
     ViewBag.Title = "Poll";
 }
 
-@Html.DisplayFor(m => m.QuestionText)
+<div class="questionText">
+    @Html.DisplayFor(m => m.QuestionText)
+</div>
+<div class="dots">........................................................</div>
+
 <br />
 <br />
+<div class="options-content">
 
-@for (int i = 0; i < Model.Options.Count(); i++)
-{
-    <span>@(i+1) </span>
-    @Html.DisplayFor(x => Model.Options[i].OptionText)
-    @Html.DisplayFor(x => Model.Options[i].NumVotes)
-    <br />
-}
+    @for (int i = 0; i < Model.Options.Count(); i++)
+    {
+        <div class="option-block">
 
+            <div class="numberDot">@(i + 1). </div>
+            <span class="optionTextEntered">
+
+                @Html.DisplayFor(x => Model.Options[i].OptionText)
+                @Html.DisplayFor(x => Model.Options[i].NumVotes)
+                <br />
+            </span>
+        </div>
+    }
+</div>
+
+
+
+<script src="http://code.highcharts.com/highcharts.js"></script>
+<script src="http://code.highcharts.com/modules/exporting.js"></script>
+
+<div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+
+<script type="text/javascript">
+    $(function () {
+
+        // Make monochrome colors and set them as default for all pies
+        Highcharts.getOptions().plotOptions.pie.colors = (function () {
+            var colors = [],
+                base = Highcharts.getOptions().colors[0],
+                i;
+
+            for (i = 0; i < 10; i += 1) {
+                // Start out with a darkened base color (negative brighten), and end
+                // up with a much brighter color
+                colors.push(Highcharts.Color(base).brighten((i - 3) / 7).get());
+            }
+            return colors;
+        }());
+
+        // Build the chart
+        chart = new Highcharts.Chart({
+            chart: {
+                plotBackgroundColor: null,
+                plotBorderWidth: null,
+                plotShadow: false,
+                renderTo: 'container',
+                type: 'pie'
+            },
+            title: {
+                text: 'Browser market shares at a specific website, 2014'
+            },
+            tooltip: {
+                pointFormat: '{series.name}: <b>{point.percentage:.1f}%</b>'
+            },
+            plotOptions: {
+                pie: {
+                    allowPointSelect: true,
+                    cursor: 'pointer',
+                    dataLabels: {
+                        enabled: true,
+                        format: '<b>{point.name}</b>: {point.percentage:.1f} %',
+                        style: {
+                            color: (Highcharts.theme && Highcharts.theme.contrastTextColor) || 'black'
+                        }
+                    }
+                }
+            },
+            series: [{
+                name: "Brands",
+                data: [
+                    { name: "Microsoft Internet Explorer", y: 56.33 },
+                    { name: "Chrome", y: 24.03 },
+                    { name: "Firefox", y: 10.38 },
+                    { name: "Safari", y: 4.77 },
+                    { name: "Opera", y: 0.91 },
+                    { name: "Proprietary or Undetectable", y: 0.2 }
+                ]
+            }]
+        });
+    });
+</script>
+
+
+@*
+    http://www.highcharts.com/demo/pie-monochrome/grid-light
+    http://stackoverflow.com/questions/23326131/uncaught-typeerror-undefined-is-not-a-function-highcharts-mvc
+*@

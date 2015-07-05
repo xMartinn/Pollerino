@@ -5,22 +5,20 @@
 }
 
 
-<div class="">
+<div class="body-content">
     <div>
-
         @using (Html.BeginForm())
         {
-            <div>
+            <div class="container">
                 @Html.AntiForgeryToken()
                 <h3>                @Html.ValidationSummary(true, "", new { @class = "text-danger" })</h3>
-
                 <br />
                 @*  @Html.TextBoxFor(m => m.QuestionText, new { Value = "enter your poll question here..." })*@
                 <div>
                     <input class="questionText" name="QuestionText" type="text" value='enter your poll question here...' onfocus="(this.value == 'enter your poll question here...') && (this.value = '')"
                            onblur="(this.value == '') && (this.value = 'enter your poll question here...')" />
+                    <div class="dots">........................................................</div>
                 </div>
-
 
                 <br />
                 @Html.CheckBoxFor(m => m.MultipleChoices)
@@ -30,10 +28,9 @@
 
                 <script type="text/javascript">
                     $(document).ready(function () {
-
                         var max_fields = 17; //maximum input boxes allowed
-                        var wrapper = $(".input_fields_wrap"); //Fields wrapper
-                        var add_button = $(".add_field_button"); //Add button ID
+                        var wrapper = $(".options-content"); //Fields wrapper
+                        var add_button = $(".add-btn"); //Add button ID
 
                         var x = 3; //initlal text box count
                         $(add_button).click(function (e) { //on add input button click
@@ -42,7 +39,7 @@
                             if (x < max_fields) { //max input box allowed
                                 x++; //text box increment
                                 var string = "value='enter option here...' onfocus=\"(this.value == 'enter option here...') && (this.value = '')\" onblur=\"(this.value == '') && (this.value = 'enter option here...')\""
-                                $(wrapper).append('<div> <span>' + x + '. </span><input name="Options[' + (x - 1) + '].OptionText" type="text"' + string + ' />@*<a href="#" class="remove_field">Remove</a>*@</div>'); //add input box
+                                $(wrapper).append('<div class="option-block"> <div class="numberDot">' + x + '. </div><input class="optionTextDefault" name="Options[' + (x - 1) + '].OptionText" type="text"' + string + ' />@*<a href="#" class="remove_field">Remove</a>*@</div>'); //add input box
 
                             }
                         });
@@ -54,26 +51,23 @@
                     });
                 </script>
 
-
-                <div class="input_fields_wrap">
-                    <div class="optionBlock">
+                <div class="options-content">
+                    <div class="option-block">
                         <div class="numberDot">1.  </div><input class="optionTextDefault" name="Options[0].OptionText" type="text" value='enter option here...' onfocus="(this.value == 'enter option here...') && (this.value = '')"
                                                                 onblur="(this.value == '') && (this.value = 'enter option here...')" />
                     </div>
-                    <div class="optionBlock">
+                    <div class="option-block">
                         <div class="numberDot">2.  </div><input class="optionTextDefault" name="Options[1].OptionText" type="text" value='enter option here...' onfocus="(this.value == 'enter option here...') && (this.value = '')"
                                                                 onblur="(this.value == '') && (this.value = 'enter option here...')" />
                     </div>
-                    <div class="optionBlock">
+                    <div class="option-block">
                         <div class="numberDot">3.  </div><input class="optionTextDefault" name="Options[2].OptionText" type="text" value='enter option here...' onfocus="(this.value == 'enter option here...') && (this.value = '') "
                                                                 onblur="(this.value == '') && (this.value = 'enter option here...') " />
                     </div>
-
                 </div>
-                <button class="add_field_button">Add More Fields</button>
-
+                <button class="add-btn"> + </button>
                 <br />
-                <input type="submit" value="Create" />
+                <input class="create-btn" type="submit" value="Create" />
             </div>
         }
     </div>
