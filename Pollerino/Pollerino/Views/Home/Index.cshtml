@@ -18,7 +18,7 @@
                 @*  @Html.TextBoxFor(m => m.QuestionText, new { Value = "enter your poll question here..." })*@
                 <div>
                     <input class="questionText" name="QuestionText" type="text" value='enter your poll question here...' onfocus="(this.value == 'enter your poll question here...') && (this.value = '')"
-                                           onblur="(this.value == '') && (this.value = 'enter your poll question here...')" />
+                           onblur="(this.value == '') && (this.value = 'enter your poll question here...')" />
                 </div>
 
 
@@ -56,17 +56,17 @@
 
 
                 <div class="input_fields_wrap">
-                    <div>
-                        <span>1. </span><input name="Options[0].OptionText" type="text" value='enter option here...' onfocus="(this.value == 'enter option here...') && (this.value = '')"
-                                               onblur="(this.value == '') && (this.value = 'enter option here...')" />
+                    <div class="optionBlock">
+                        <div class="numberDot">1.  </div><input class="optionTextDefault" name="Options[0].OptionText" type="text" value='enter option here...' onfocus="(this.value == 'enter option here...') && (this.value = '')"
+                                                                onblur="(this.value == '') && (this.value = 'enter option here...')" />
                     </div>
-                    <div>
-                        <span>2. </span><input name="Options[1].OptionText" type="text" value='enter option here...' onfocus="(this.value == 'enter option here...') && (this.value = '')"
-                                               onblur="(this.value == '') && (this.value = 'enter option here...')" />
+                    <div class="optionBlock">
+                        <div class="numberDot">2.  </div><input class="optionTextDefault" name="Options[1].OptionText" type="text" value='enter option here...' onfocus="(this.value == 'enter option here...') && (this.value = '')"
+                                                                onblur="(this.value == '') && (this.value = 'enter option here...')" />
                     </div>
-                    <div>
-                        <span>3. </span><input name="Options[2].OptionText" type="text" value='enter option here...' onfocus="(this.value == 'enter option here...') && (this.value = '')"
-                                               onblur="(this.value == '') && (this.value = 'enter option here...')" />
+                    <div class="optionBlock">
+                        <div class="numberDot">3.  </div><input class="optionTextDefault" name="Options[2].OptionText" type="text" value='enter option here...' onfocus="(this.value == 'enter option here...') && (this.value = '') "
+                                                                onblur="(this.value == '') && (this.value = 'enter option here...') " />
                     </div>
 
                 </div>
