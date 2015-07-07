@@ -17,5 +17,7 @@ namespace Pollerino.Models
        [NotMapped]
        public int? SelectedItem { get; set; } //just for radiobuttons
 
+       [NotMapped]
+       public int? TotalVotes { get; set; }
     }
 }

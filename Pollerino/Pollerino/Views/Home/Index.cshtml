@@ -11,17 +11,28 @@
         {
             <div class="container">
                 @Html.AntiForgeryToken()
-                <h3>                @Html.ValidationSummary(true, "", new { @class = "text-danger" })</h3>
+                <h3>               </h3>
+
                 <br />
                 @*  @Html.TextBoxFor(m => m.QuestionText, new { Value = "enter your poll question here..." })*@
                 <div>
                     <input class="questionText" name="QuestionText" type="text" value='enter your poll question here...' onfocus="(this.value == 'enter your poll question here...') && (this.value = '')"
                            onblur="(this.value == '') && (this.value = 'enter your poll question here...')" />
+                    <div class="alert alert-danger">
+                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                        <strong></strong>@Html.ValidationSummary(true, "", new { @class = "text-danger" }).
+                    </div>
+
                     <div class="dots">........................................................</div>
                 </div>
 
-                <br />
-                @Html.CheckBoxFor(m => m.MultipleChoices)
+
+                <div class="chose">
+                    <label>
+                        <span>enable mutiple choice</span>
+                        @Html.CheckBoxFor(m => m.MultipleChoices)
+                    </label>
+                </div>
                 <br />
 
                 @*credits http://www.sanwebe.com/2013/03/addremove-input-fields-dynamically-with-jquery*@
@@ -39,7 +50,7 @@
                             if (x < max_fields) { //max input box allowed
                                 x++; //text box increment
                                 var string = "value='enter option here...' onfocus=\"(this.value == 'enter option here...') && (this.value = '')\" onblur=\"(this.value == '') && (this.value = 'enter option here...')\""
-                                $(wrapper).append('<div class="option-block"> <div class="numberDot">' + x + '. </div><input class="optionTextDefault" name="Options[' + (x - 1) + '].OptionText" type="text"' + string + ' />@*<a href="#" class="remove_field">Remove</a>*@</div>'); //add input box
+                                $(wrapper).append('<div class="option-block"> <div class="numberDot">' + x + '. </div><input class="option-text-default" name="Options[' + (x - 1) + '].OptionText" type="text"' + string + ' />@*<a href="#" class="remove_field">Remove</a>*@</div>'); //add input box
 
                             }
                         });
@@ -51,24 +62,30 @@
                     });
                 </script>
 
-                <div class="options-content">
-                    <div class="option-block">
-                        <div class="numberDot">1.  </div><input class="optionTextDefault" name="Options[0].OptionText" type="text" value='enter option here...' onfocus="(this.value == 'enter option here...') && (this.value = '')"
-                                                                onblur="(this.value == '') && (this.value = 'enter option here...')" />
-                    </div>
-                    <div class="option-block">
-                        <div class="numberDot">2.  </div><input class="optionTextDefault" name="Options[1].OptionText" type="text" value='enter option here...' onfocus="(this.value == 'enter option here...') && (this.value = '')"
-                                                                onblur="(this.value == '') && (this.value = 'enter option here...')" />
-                    </div>
-                    <div class="option-block">
-                        <div class="numberDot">3.  </div><input class="optionTextDefault" name="Options[2].OptionText" type="text" value='enter option here...' onfocus="(this.value == 'enter option here...') && (this.value = '') "
-                                                                onblur="(this.value == '') && (this.value = 'enter option here...') " />
+                <div class="options-content-center">
+                    <div class="options-content">
+                        <div class="option-block">
+                            <div class="numberDot">1.  </div><input class="option-text-default" name="Options[0].OptionText" type="text" value='enter option here...' onfocus="(this.value == 'enter option here...') && (this.value = '')"
+                                                                    onblur="(this.value == '') && (this.value = 'enter option here...')" />
+                        </div>
+                        <div class="option-block">
+                            <div class="numberDot">2.  </div><input class="option-text-default" name="Options[1].OptionText" type="text" value='enter option here...' onfocus="(this.value == 'enter option here...') && (this.value = '')"
+                                                                    onblur="(this.value == '') && (this.value = 'enter option here...')" />
+                        </div>
+                        <div class="option-block">
+                            <div class="numberDot">3.  </div><input class="option-text-default" name="Options[2].OptionText" type="text" value='enter option here...' onfocus="(this.value == 'enter option here...') && (this.value = '') "
+                                                                    onblur="(this.value == '') && (this.value = 'enter option here...') " />
+                        </div>
                     </div>
                 </div>
                 <button class="add-btn"> + </button>
                 <br />
-                <input class="create-btn" type="submit" value="Create" />
+                <div class="create-btn">
+                    <input type="submit" value="Create" />
+                </div>
+
             </div>
+
         }
     </div>
 

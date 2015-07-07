@@ -137,6 +137,20 @@ namespace Pollerino.Controllers
             {
                 return Redirect("404");
             }
+
+            int voteCount=0;
+
+            foreach(Option option in poll.Options){
+                voteCount += option.NumVotes;    
+            }
+
+            poll.TotalVotes = voteCount;
+
+            foreach (Option option in poll.Options)
+            {
+                option.Percentage = ((double)option.NumVotes / (double)voteCount) * 100;
+            }
+
             return View(poll);
         }
 

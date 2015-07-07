@@ -8,57 +8,77 @@
 @using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
+    <h3>   </h3>
+    <br />
     <div class="questionText">
         @Html.HiddenFor(m => m.MultipleChoices)
         @Html.HiddenFor(m => m.PollId)
         @Html.DisplayFor(m => m.QuestionText)
     </div>
     <div class="dots">........................................................</div>
-
-    <br />
-    <div class="options-content">
-
+    <div class="chose">
         @if (Model.MultipleChoices)
         {
-            for (int i = 0; i < Model.Options.Count(); i++)
-            {
-                <label>
-                    <div class="option-block">
-                        <div class="numberDot">@i.  </div>
-                        <span class="optionTextEntered">
-                            @Html.HiddenFor(x => Model.Options[i].OptionId)
-                            @Html.HiddenFor(x => Model.Options[i].PollId)
-                            @Html.DisplayFor(x => Model.Options[i].OptionText)
-                            @Html.CheckBoxFor(x => Model.Options[i].WasChecked)
-                        </span>
-                    </div>
-                </label>
-                <br />
-            }
+            <span>(pick one or multiple)</span>
+
         }
         else
         {
-            var num = 0;
-            foreach (var option in Model.Options)
-            {
-                num = num + 1;
-                <label>
-                    <div class="option-block">
-                        <div class="numberDot">@num.  </div>
-                        <span class="optionTextEntered">
-                            @Html.HiddenFor(x => option.OptionId)
-                            @Html.HiddenFor(x => option.PollId)
-                            @Html.HiddenFor(x => option.OptionText)
-                            @option.OptionText
-                            @Html.RadioButtonFor(x => Model.SelectedItem, option.OptionId)
-                        </span>
+            <span>(pick one)</span>
 
-                    </div>
-                </label>
-                <br />
-            }
         }
     </div>
-    <input class="create-btn" type="submit" value="Submit" />
+    <br />
+    <div class="options-content-center">
+        <div class="options-content">
+
+            @if (Model.MultipleChoices)
+            {
+                for (int i = 0; i < Model.Options.Count(); i++)
+                {
+                    <label>
+                        <div class="option-block">
+                            <div class="numberDot">@(i+1).  </div>
+                            <span class="optionTextEntered">
+                                @Html.HiddenFor(x => Model.Options[i].OptionId)
+                                @Html.HiddenFor(x => Model.Options[i].PollId)
+                                @Html.DisplayFor(x => Model.Options[i].OptionText)
+                                @Html.CheckBoxFor(x => Model.Options[i].WasChecked)
+                            </span>
+                        </div>
+                    </label>
+                    <br />
+                }
+            }
+            else
+            {
+                var num = 0;
+                foreach (var option in Model.Options)
+                {
+                    num = num + 1;
+                    <label>
+                        <div class="option-block">
+                            <div class="numberDot">@num.  </div>
+                            <span class="optionTextEntered">
+                                @Html.HiddenFor(x => option.OptionId)
+                                @Html.HiddenFor(x => option.PollId)
+                                @Html.HiddenFor(x => option.OptionText)
+                                @option.OptionText
+                                @Html.RadioButtonFor(x => Model.SelectedItem, option.OptionId)
+                            </span>
+
+                        </div>
+                    </label>
+                    <br />
+                }
+            }
+
+
+        </div>
+    </div>
+    <div class="create-btn">
+        <input type="submit" value="Submit" />
+    </div>
 }
 
+<a href="@Url.Action("Result", new { controller="Home" , action="Index", id=Model.PollId })" class="btn btn-primary btn-lg">result</a>

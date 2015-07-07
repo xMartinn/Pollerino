@@ -10,6 +10,7 @@
     margin-left: auto;
     margin-right: auto;
     margin-top: 10px;
+    position: relative;
 }
 
 /* Set width on the form input elements since they're 100% wide by default */
@@ -23,7 +24,7 @@ textarea {
     background-color: #f4f4f4;
     text-align: center;
     border: none;
-    padding: 60px;
+    padding: 30px;
 }
 
 .line {
@@ -37,6 +38,7 @@ input {
     border: none;
     background-color: #393946;
     font-family: 'Script MT Std';
+    color:#f4f4f4;
 }
 
     textarea:focus, input:focus {
@@ -46,28 +48,31 @@ input {
 .questionText {
     font-family: 'Script MT Std';
     text-align: center;
-    font-size: 30pt;
+    font-size: 33pt;
     width: 100%;
     color: #f4f4f4;
 }
 
-.optionTextDefault {
+.option-text-default {
     font-family: 'Script MT Std';
     text-align: left;
     color: #25252e;
-    font-size: 25px;
+    font-size: 28px;
     float: left;
     margin-left: 20px;
+    width:230px;
 }
 
 .optionTextEntered {
     font-family: 'Script MT Std';
     text-align: left;
     color: #f4f4f4;
-    font-size: 25px;
+    font-size: 28px;
     float: left;
     margin-left: 20px;
+    width:auto;
 }
+
 
 .numberDot {
     width: 37px;
@@ -82,7 +87,7 @@ input {
 }
 
 .option-block {
-    margin-top: 10px;
+    margin-top: 14px;
     height: 38px;
     width: 100%;
 }
@@ -96,15 +101,36 @@ input {
     letter-spacing: 5px;
 }
 
+.chose {
+    font-family: 'Script MT Std';
+    font-size: 20px;
+    text-align: center;
+    color: #f4f4f4;
+}
+
 .options-content {
-    margin-left: 360px;
+    margin: 0 auto;
+    text-align: left;
+}
+
+.options-content-center {
+    display: flex;
+    flex-direction: column;
 }
 
 .add-btn {
 }
 
 .create-btn {
+    margin-top:30px;
+    text-align:center;
     font-family: 'Script MT Std';
     font-size: 25px;
     color: #f4f4f4;
+}
+
+label {
+    border: none;
+    padding: 0px;
+    margin: 0px;
 }

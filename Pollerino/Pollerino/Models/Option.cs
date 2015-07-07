@@ -20,5 +20,8 @@ namespace Pollerino.Models
         public virtual Poll Poll { get; set; }
 
         public int NumVotes { get; set; }
+
+        [NotMapped]
+        public double Percentage { get; set; }
     }
 }

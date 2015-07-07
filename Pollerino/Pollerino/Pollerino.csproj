@@ -118,7 +118,6 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\HomeController.cs" />
-    <Compile Include="Controllers\PollsController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -134,6 +133,7 @@
     <Content Include="Content\bootstrap.min.css" />
     <Content Include="Content\Img\line.png" />
     <Content Include="Content\Img\logo.png" />
+    <Content Include="Content\Img\numberDot.png" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -167,11 +167,6 @@
     <Content Include="Views\Home\Result.cshtml" />
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Scripts\jquery-1.10.2.min.map" />
-    <Content Include="Views\Polls\Create.cshtml" />
-    <Content Include="Views\Polls\Delete.cshtml" />
-    <Content Include="Views\Polls\Details.cshtml" />
-    <Content Include="Views\Polls\Edit.cshtml" />
-    <Content Include="Views\Polls\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
