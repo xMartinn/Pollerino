@@ -14,6 +14,7 @@ namespace Pollerino.Controllers
 
         public ActionResult Index()
         {
+            ViewData["isCorrect"] = true;
             return View();
         }
 
@@ -23,10 +24,13 @@ namespace Pollerino.Controllers
         {
 
             //TODO enhancement check if some options arent same 
+            ViewData["isCorrect"] = true;
 
             if (String.IsNullOrWhiteSpace(poll.QuestionText) || poll.QuestionText == "enter your poll question here...")
             {
                 ModelState.AddModelError("", "Please enter you poll question.");
+                ViewData["isCorrect"] = false;
+
                 return View(poll);
             }
 
@@ -45,6 +49,7 @@ namespace Pollerino.Controllers
                 if (filtredOptions.Count < 2)
                 {
                     ModelState.AddModelError("", "Poll must contain atleast two options to chose.");
+                    ViewData["isCorrect"] = false;
                     return View(poll);
                 }
 
@@ -148,7 +153,7 @@ namespace Pollerino.Controllers
 
             foreach (Option option in poll.Options)
             {
-                option.Percentage = ((double)option.NumVotes / (double)voteCount) * 100;
+                option.Percentage =  Math.Round(((double)option.NumVotes / (double)voteCount) * 100,2);
             }
 
             return View(poll);
