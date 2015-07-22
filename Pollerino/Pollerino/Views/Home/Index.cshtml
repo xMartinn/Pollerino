@@ -1,9 +1,9 @@
-﻿@model Pollerino.Models.Poll
+﻿
+@model Pollerino.Models.Poll
 
 @{
     ViewBag.Title = "Home Page";
 }
-
 
 <div class="body-content">
     <div>
@@ -15,14 +15,17 @@
 
                 <br />
                 @*  @Html.TextBoxFor(m => m.QuestionText, new { Value = "enter your poll question here..." })*@
-                <div>
+             
+    @if (ViewData["isCorrect"].ToString() == "False")
+    {
+                <div class="alert alert-danger">
+            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+            <strong></strong>@Html.ValidationSummary(true, "", new { @class = "text-danger" }).
+        </div>
+    }
+                  <div>
                     <input class="questionText" name="QuestionText" type="text" value='enter your poll question here...' onfocus="(this.value == 'enter your poll question here...') && (this.value = '')"
-                           onblur="(this.value == '') && (this.value = 'enter your poll question here...')" />
-                    <div class="alert alert-danger">
-                        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
-                        <strong></strong>@Html.ValidationSummary(true, "", new { @class = "text-danger" }).
-                    </div>
-
+                           onblur="(this.value == '') && (this.value = 'enter your poll question here...')" />   
                     <div class="dots">........................................................</div>
                 </div>
 
@@ -76,9 +79,12 @@
                             <div class="numberDot">3.  </div><input class="option-text-default" name="Options[2].OptionText" type="text" value='enter option here...' onfocus="(this.value == 'enter option here...') && (this.value = '') "
                                                                     onblur="(this.value == '') && (this.value = 'enter option here...') " />
                         </div>
+
                     </div>
-                </div>
-                <button class="add-btn"> + </button>
+                    <button class="add-btn"> + </button>
+    
+                   </div>
+                
                 <br />
                 <div class="create-btn">
                     <input type="submit" value="Create" />

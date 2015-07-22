@@ -26,30 +26,29 @@
                 <span class="optionTextEntered">
 
                     @Html.DisplayFor(x => Model.Options[i].OptionText)
-                    @Html.DisplayFor(x => Model.Options[i].Percentage)
-                    @Html.DisplayFor(x => Model.Options[i].NumVotes)
+                <span class="percentage">    @Html.DisplayFor(x => Model.Options[i].Percentage) %</span>
+                    <span class="votes">
+                        @Html.DisplayFor(x => Model.Options[i].NumVotes)</span>
 
-                    <br />
-                </span>
+                        <br />
+                    </span>
 
             </div>
-            graphData += "{name:'" + Model.Options[i].OptionText + "', y: " + Model.Options[i].Percentage + "},";
+            var percentage = (Model.Options[i].Percentage.ToString()).Replace(',', '.');
+            graphData += "{name:'" + Model.Options[i].OptionText + "', y: " + percentage + "},";
 
         }
-        <h3>Total votes: @Model.TotalVotes</h3>
-
+        
     </div>
 
 </div>
 
+
 @{graphData = graphData.Substring(0, graphData.Length - 1);}
-<br />
-<br />
-<br />
 
 <script src="http://code.highcharts.com/highcharts.js"></script>
 
-<div id="container" style="min-width: 310px; height: 400px; max-width: 600px; margin: 0 auto"></div>
+<div id="container" style=" height: 400px; width: 420px; margin: 0 auto"></div>
 
 <script type="text/javascript">
 
@@ -77,6 +76,7 @@
         chart = new Highcharts.Chart({
             chart: {
                 plotBackgroundColor: "#393946",
+                borderColor: "#393946",
                 plotBorderWidth: null,
                 plotShadow: false,
                 renderTo: 'container',
@@ -124,6 +124,10 @@
     });
 
 </script>
+
+<div class="text-center">
+    <h3>Total votes: @Model.TotalVotes</h3>
+</div>
 
 
 @*
