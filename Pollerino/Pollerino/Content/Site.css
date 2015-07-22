@@ -2,6 +2,12 @@
     padding-bottom: 20px;
     background-color: #393946;
     color: #f4f4f4;
+    min-width:1200px;
+}
+
+@font-face {
+    font-family: Script MT Std;
+    src: url(fonts/scriptmtstd-bold.otf);
 }
 
 /* Set padding to keep content from hitting the edges */
@@ -119,14 +125,24 @@ input {
 }
 
 .add-btn {
+    margin: 0 auto;
+      width:50px;
 }
 
 .create-btn {
-    margin-top:30px;
+
+    margin: 0 auto;
+    margin-top:20px;
+    padding-top:5px;
     text-align:center;
     font-family: 'Script MT Std';
     font-size: 25px;
     color: #f4f4f4;
+    background-image:url(Img/btn_bg.png);
+    background-repeat:no-repeat;
+    width:158px;
+    height:54px;
+    
 }
 
 label {
@@ -134,3 +150,15 @@ label {
     padding: 0px;
     margin: 0px;
 }
+
+.percentage {
+    padding-left:80px;
+    color:#747494;
+    font-size:18px;
+}
+
+.votes {
+    padding-left:30px;
+
+}
+
